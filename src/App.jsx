@@ -1,6 +1,6 @@
 
 
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // Pages
@@ -12,11 +12,29 @@ import CoursesPage from './pages/CoursesPage';
 
 import NotFoundPage from './pages/NotFoundPage';
 import ChatbotComponent from './components/Chaboat/ChatbotComponents';
+import DeveloperInfoPopup from './components/DeveloperInfo/DeveloperInfoPopup';
 
 function App() {
+  const [showPopup, setShowPopup] = useState(true);
+  const handleClosePopup = () => {
+    setShowPopup(false);
+  };
   return (
+    <>
+     <div>
+        {/* Your main application content */}
+        <DeveloperInfoPopup
+          show={showPopup}
+          onClose={handleClosePopup}
+          studentName="Diksha Dilip Patil"
+          studentPhotoUrl="\Images\diksha.jpg" // Path to their photo
+          uniqueMessage="Learned so much during this OJT! This app showcases my independent coding and deployment skills"
+        />
+      </div>   
+    
+
     <Router>
-     
+    
       
       <main style={{ padding: '1rem' }}>
         <Routes>
@@ -29,7 +47,9 @@ function App() {
         </Routes>
       </main>
       <ChatbotComponent/>
+      
     </Router>
+    </>
   );
 }
 
